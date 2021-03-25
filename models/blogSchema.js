@@ -2,46 +2,51 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
-    userId: {
-      type: String,
-      required: true
-    },
+  userId: {
+    type: String,
+    required: true,
+  },
 
-    displayName: { 
-      type: String, 
-      required: true 
-    }, 
-    
-    title: {
-      type: String,
-      trim: true,
-      required: "Title is required",
-    },
+  displayName: {
+    type: String,
+    required: true,
+  },
 
-    text: {
-      type: String,
-      trim: true,
-      required: "Text is required",
-    },
+  title: {
+    type: String,
+    trim: true,
+    required: "Title is required",
+  },
 
-    category: {
-      type: String,
-      default: "General",
-    },
+  text: {
+    type: String,
+    trim: true,
+    required: "Text is required",
+  },
 
-    zipCode: {
-      type: Number, 
-      required: true 
-    },
+  category: {
+    type: String,
+    default: "General",
+  },
 
-    imgUrl: {
-      type: String, 
-    },
+  zipCode: {
+    type: Number,
+    required: true,
+  },
 
-    price: {
-      type: Number,
-      required: true
-    }
+  imgUrl: {
+    type: String,
+  },
+
+  price: {
+    type: Number,
+    required: true,
+  },
+
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Blog = mongoose.model("blog", BlogSchema);

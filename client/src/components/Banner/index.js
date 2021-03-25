@@ -11,16 +11,29 @@ function Banner(props) {
       }}
     >
       <div className="banner-text">
-        <h1>{props.title}</h1>
+        <h1>Welcome {props.title}!</h1>
         <p>{props.subtitle}</p>
         <br />
 
-        <Link to="/login">
-          <button>Login </button>
-        </Link>
-        <Link to="/register">
-          <button>Register</button>
-        </Link>
+        {props.user ? (
+          <div>
+            <Link to="/upload">
+              <button>Upload </button>
+            </Link>
+            <Link to="/productlist">
+              <button>Products</button>
+            </Link>
+          </div>
+      ) : (
+        <div>
+          <Link to="/login">
+            <button>Login </button>
+          </Link>
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
+        </div>
+      )}
       </div>
     </div>
   );

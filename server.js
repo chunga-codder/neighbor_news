@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 
 // setup routes
 const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
+// const htmlRoutes = require("./routes/htmlRoutes");
 const userRoutes = require("./routes/userRoutes");
 const confirmRoutes = require("./routes/confirmRoutes");
 

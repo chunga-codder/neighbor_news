@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Container from "./../components/Container";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -7,10 +7,28 @@ import API from "../utils/API";
 const Account = (props) => {
   const { userData } = useContext(UserContext);
   const history = useHistory();
+  const [form, setForm] = useState();
 
-  useEffect(() => {
-    if (!userData.user) history.push("/login");
+  const initalUserData = () => {
+    setForm({
+      firstName: userData.user.firstName,
+      lastName: userData.user.lastName,
+      displayName: userData.user.displayName,
+      email: userData.user.email,
+      zipCode: userData.user.zipCode
+    })
+  }
+  // This is used to set the form state with what needs to be posted to the database
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  useEffect(async () => {
+    let token = await localStorage.getItem("auth-token");
+    if (!token) history.push("/login");
   }, [userData.user, history]);
+
+  console.log(userData.user)
 
   const deleteUser = async () => {
     let token = localStorage.getItem("auth-token");
@@ -25,7 +43,15 @@ const Account = (props) => {
   };
 
   const updateUser = async () => {
-    // update user
+    let userId = userData.user.id
+    try {
+      await API.updateUser(userId, form);
+      history.push("/account");
+      window.location.reload(false);
+    } catch (err) {
+      console.log(err);
+      alert(err)
+    }
   };
 
   return (
@@ -43,7 +69,8 @@ const Account = (props) => {
               class="form-control"
               id="email"
               name="firstName"
-              value={userData.user?.firstName}
+              onChange={onChange}
+              placeholder={userData.user?.firstName}
             />
           </div>
           <div class="form-group col-6">
@@ -53,7 +80,8 @@ const Account = (props) => {
               class="form-control"
               id="lastName"
               name="lastName"
-              value={userData.user?.lastName}
+              onChange={onChange}
+              placeholder={userData.user?.lastName}
             />
           </div>
         </div>
@@ -65,8 +93,9 @@ const Account = (props) => {
               type="text"
               class="form-control"
               id="username"
-              name="username"
-              value={userData.user?.displayName}
+              name="displayName"
+              onChange={onChange}
+              placeholder={userData.user?.displayName}
             />
           </div>
           <div class="form-group col-8">
@@ -76,7 +105,8 @@ const Account = (props) => {
               class="form-control"
               id="email"
               name="email"
-              value={userData.user?.email}
+              onChange={onChange}
+              placeholder={userData.user?.email}
             />
           </div>
         </div>
@@ -87,7 +117,8 @@ const Account = (props) => {
             class="form-control"
             id="zipCode"
             name="zipCode"
-            value={userData.user?.zipCode}
+            onChange={onChange}
+            placeholder={userData.user?.zipCode}
           />
         </div>
       </form>

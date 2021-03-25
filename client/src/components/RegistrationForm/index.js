@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
 import Container from "./../Container";
-import axios from "axios";
-import API from "../../utils/API"
-import {useHistory} from "react-router-dom";
+import API from "../../utils/API";
+import { useHistory } from "react-router-dom";
 import "./style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { AiFillCamera } from "react-icons/ai";
 const imgPath = process.env.PUBLIC_URL + "/img/";
 
 function RegistrationForm() {
@@ -23,10 +21,10 @@ function RegistrationForm() {
     try {
       await API.registerUser(form);
       history.push("/");
-      window.location.reload(false)
+      window.location.reload(false);
     } catch (err) {
       console.log(err.response);
-      alert(err.response.data.msg)
+      alert(err.response.data.msg);
     }
   };
 
@@ -51,7 +49,7 @@ function RegistrationForm() {
               />
               <div className="icon-container">
                 <div className="camera-icon">
-                  <FontAwesomeIcon icon="fa-camera" />
+                  <AiFillCamera />
                 </div>
               </div>
             </div>
@@ -82,7 +80,7 @@ function RegistrationForm() {
                 id="firstName-input"
                 required
                 onChange={onChange}
-                name='firstName'
+                name="firstName"
               />
               <small id="first-name-validation" className="form-text"></small>
             </div>
@@ -95,7 +93,7 @@ function RegistrationForm() {
                 id="lastName-input"
                 required
                 onChange={onChange}
-                name='lastName'
+                name="lastName"
               />
               <small id="last-name-validation" className="form-text"></small>
             </div>
@@ -108,7 +106,7 @@ function RegistrationForm() {
                 id="displayName-input"
                 required
                 onChange={onChange}
-                name='displayName'
+                name="displayName"
               />
               <small id="last-name-validation" className="form-text"></small>
             </div>
@@ -124,7 +122,7 @@ function RegistrationForm() {
                 placeholder="Email Address"
                 required
                 onChange={onChange}
-                name='email'
+                name="email"
               />
               <small id="email-validation" className="form-text"></small>
             </div>
@@ -139,7 +137,7 @@ function RegistrationForm() {
                 placeholder="Phone Number"
                 required
                 onChange={onChange}
-                name='phoneNumber'
+                name="phoneNumber"
               />
               <small id="phone-validation" className="form-text"></small>
             </div>
@@ -155,7 +153,7 @@ function RegistrationForm() {
               placeholder="Street Address"
               required
               onChange={onChange}
-              name='streetAddress'
+              name="streetAddress"
             />
           </div>
           <div className="form-row">
@@ -169,7 +167,7 @@ function RegistrationForm() {
                 placeholder="City"
                 required
                 onChange={onChange}
-                name='city'
+                name="city"
               />
             </div>
 
@@ -252,13 +250,11 @@ function RegistrationForm() {
           <span className="text-black-50">
             By clicking <b>"Submit"</b>, you agree to the storage and handling
             of your data by this website in accordance with our
-            <a href="#"> Privacy Policy</a>
+            <a href="/"> Privacy Policy</a>
           </span>
           <br />
           <br />
-          <button className="btn btn-default btn-primary">
-            Submit
-          </button>
+          <button className="btn btn-default btn-primary">Submit</button>
         </form>
         <br />
         <p>

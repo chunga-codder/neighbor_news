@@ -1,5 +1,5 @@
 require("dotenv").config();
-const User = require("../models/userSchema");
+const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Confirm = require("../models/confirmModel");
@@ -75,13 +75,13 @@ module.exports = {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "neighbornews@gmail.com",
-          pass: "1LMbRq61WYny",
+          user: "heyneighborteam@gmail.com",
+          pass: process.env.EMAIL_PASSWORD,
         },
       });
 
       const mailOptions = {
-        from: "neighbornews@gmail.com",
+        from: "heyneighborteam@gmail.com",
         to: newUser.email,
         subject: " Thanks for signing up",
         text: `Click to confirm http://localhost:3000/confirm_token/${confirmationToken.token}`,
@@ -146,6 +146,7 @@ module.exports = {
   getUser: async (req, res) => {
     try {
       const user = await User.findById(req.user);
+
       res.json({
         displayName: user.displayName,
         id: user._id,
@@ -159,6 +160,27 @@ module.exports = {
     }
   },
 
+  updateUser: async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id)
+      const { displayName, id, firstName, lastName, email, zipCode } = req.body;
+
+      console.log(req.body)
+
+      if (displayName) user.displayName = displayName;
+      if (id) user.id = id;
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (email) user.email = email;
+      if (zipCode) user.zipCode = zipCode;
+
+      res.json(await user.save());
+      
+    } catch (err) {
+      res.send({error:err})
+    }
+  },
+
   deleteUser: async (req, res, next) => {
     try {
       const deletedUser = await User.findByIdAndDelete(req.user);
@@ -166,6 +188,23 @@ module.exports = {
       next();
     } catch (err) {
       res.send({ error: err });
+    }
+  },
+
+  checkToken: async (req, res) => {
+    try {
+      const token = req.header("x-auth-token");
+      if (!token) return res.json(false);
+
+      const verified = jwt.verify(token, process.env.JWT_SECRET);
+      if (!verified) return res.json(false);
+
+      const user = await User.findById(verified.id);
+      if (!user) return res.json(false);
+
+      return res.json(true);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   },
 };

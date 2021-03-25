@@ -1,10 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
+
+.text-title-case {
+  text-transform: capitalize;
+}
+
+a.navbar-brand {
+  font-family: "Sigmar One", cursive !important;
+  margin-left: -3px;
+  font-size: 24px;
+}
+
+.logo {
+  width: 55px;
+  height: 43px;
+  padding-top: 0px;
+}
+
+/* Styling for the sidebar */
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 36px;
+  width: 30px;
+  height: 25px;
+  right: 15px;
+  top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -19,8 +40,8 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: 54px;
 }
 
 /* Color/shape of close button cross */
@@ -40,7 +61,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   background: #373a47;
-  padding: 2.5em 1.5em 0;
+  padding: 2em 1.2em 0;
   font-size: 1.15em;
 }
 
@@ -52,7 +73,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
-  padding: 0.8em;
+  padding: 0.6em;
 }
 
 /* Individual item */
@@ -68,7 +89,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
-
   color: #d1d1d1;
   margin-bottom: 10px;
   text-align: left;

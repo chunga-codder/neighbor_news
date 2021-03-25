@@ -1,5 +1,5 @@
 const Confirm = require("../models/confirmModel");
-const User = require("../models/userSchema");
+const User = require("../models/userModel");
 
 module.exports = {
   confirmUser: async (req, res) => {

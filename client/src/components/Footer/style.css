@@ -2,6 +2,7 @@ footer {
   min-height: 100px;
   background-color: #333;
   position: relative;
+  margin-top: auto;
 }
 
 footer span {

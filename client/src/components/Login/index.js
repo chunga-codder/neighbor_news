@@ -1,5 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from "react";
-import UserContext from "../../context/UserContext.js";
+import React, { useState } from "react";
 import Container from "./../Container";
 import API from "../../utils/API";
 import { useHistory } from "react-router-dom";
@@ -24,7 +23,7 @@ function LoginPage() {
       });
 
       localStorage.setItem("auth-token", data.token);
-      await history.push("/");
+      await history.push("/account");
       window.location.reload(false);
     } catch (err) {
       console.log(err.response);
