@@ -7,7 +7,7 @@ const {
   updateUser,
   deleteUser,
   checkToken,
-} = require("../controllers/UserController");
+} = require("../controllers/userController");
 
 router.post("/register", register);
 

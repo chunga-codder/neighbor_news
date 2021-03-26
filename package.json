@@ -37,7 +37,6 @@
     "type": "git",
     "url": "git+https://github.com/jrkrichards/neighbor_news.git"
   },
-  "proxy": "http://localhost:3001",
   "keywords": [],
   "author": "",
   "license": "ISC",

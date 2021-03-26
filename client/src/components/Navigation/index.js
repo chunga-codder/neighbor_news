@@ -37,20 +37,6 @@ function Navigation(props) {
           <a className="menu-item" href="/upload">
             <SiAddthis style={{ marginRight: "8px" }} /> List a product
           </a>
-          <a className="menu-item" href="/">
-            <FaMapMarkerAlt style={{ marginRight: "8px" }} /> Map
-          </a>
-
-          <a className="menu-item" href="/">
-            <FaStore style={{ marginRight: "8px" }} /> Businesses
-          </a>
-          <a className="menu-item" href="/">
-            <FaCalendarAlt style={{ marginRight: "8px" }} /> Events
-          </a>
-          <a className="menu-item" href="/">
-            <AiFillSafetyCertificate style={{ marginRight: "8px" }} /> Crime &
-            Safety
-          </a>
         </Menu>
       ) : null}
       <Navbar bg="light" variant="light">
@@ -71,8 +57,6 @@ function Navigation(props) {
                 className="navbar-links-div"
                 style={{ display: "flex", paddingRight: "10px" }}
               >
-                <NavIcon path="/messages" icon={<RiMessage2Fill />} count="4" />
-                <NavIcon path="/" icon={<AiTwotoneBell />} count="2" />
                 <Nav.Link
                   onClick={() => {
                     history.push("/account");

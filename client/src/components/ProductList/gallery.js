@@ -121,12 +121,6 @@ const Gallery = () => {
                         style={{ marginLeft: "3px", marginBottom: "3px" }}
                       />
                     </Button>
-                    <Button variant="info" size="sm">
-                      View{" "}
-                      <AiFillEye
-                        style={{ marginLeft: "3px", marginBottom: "3px" }}
-                      />{" "}
-                    </Button>
                   </Card.Body>
                 </div>
               </div>
